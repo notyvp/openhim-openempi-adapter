@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="mediation-normalization-queryfacilities-generic">
-    <flow SubFlow="false" name="mediation-normalization-updatepatient-genericFlow" entity-id="4e8cf802-25e4-4920-b442-bae59362e3dd">
+    <flow SubFlow="false" name="mediation-normalization-updatepatient-genericFlow" entity-id="545f10fe-4f1d-4528-a622-f7d2c9ecded1">
         <properties>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
@@ -12,7 +12,7 @@
             <property value="1" name="auxiliary;index"/>
         </properties>
         <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
-            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/https/endpoint" name="HTTP" entity-id="9748c1cd-e5c6-4dc1-b242-393e89cccd1d">
+            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/http/endpoint" name="HTTP" entity-id="HTTP#1">
                 <properties>
                     <property value="true" name="auxiliary;erased;contentType"/>
                     <property value="${up.port}" name="port"/>
@@ -33,9 +33,10 @@
                     <property value="" name="encoding"/>
                     <property value="" name="responseTransformer-refs"/>
                     <property value="" name="user"/>
-                    <property value="10000" name="responseTimeout"/>
+                    <property value="" name="responseTimeout"/>
                     <property value="" name="mimeType"/>
                     <property value="" name="connector-ref"/>
+                    <property value="2" name="auxiliary;index"/>
                     <property name="updated"/>
                 </properties>
                 <description></description>
@@ -111,7 +112,7 @@
                     </lane>
                 </compartment>
             </response>
-            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Send to updatePatientOrchestrationQueue" entity-id="VM#2">
+            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Send to updatePatientOrchestrationQueue" entity-id="VM#1">
                 <properties>
                     <property value="one-way" name="exchange-pattern"/>
                     <property value="request-response" name="exchange-pattern"/>
