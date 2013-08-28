@@ -1,88 +1,142 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="mediation-normalization-queryfacilities-generic">
-    <flow SubFlow="false" name="mediation-normalization-updatepatient-genericFlow">
+    <flow SubFlow="false" name="mediation-normalization-updatepatient-genericFlow" entity-id="4e8cf802-25e4-4920-b442-bae59362e3dd">
         <properties>
             <property name="processingStrategy2"/>
             <property name="processingStrategy"/>
+            <property value="1" name="auxiliary;index"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
+            <property value="1" name="auxiliary;index"/>
         </properties>
-        <lane entity-id="92251c0f-5bbc-464f-a226-3ac656051f38">
-            <endpoint message-exchange-pattern="OneWay" direction="Inbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Read from queue" entity-id="b489a1ac-a68c-42fa-aa8f-3d24ec8c90f4">
+        <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#1">
+            <endpoint message-exchange-pattern="RequestResponse" direction="Inbound" type="http://www.mulesoft.org/schema/mule/https/endpoint" name="HTTP" entity-id="9748c1cd-e5c6-4dc1-b242-393e89cccd1d">
                 <properties>
-                    <property value="one-way" name="exchange-pattern"/>
+                    <property value="true" name="auxiliary;erased;contentType"/>
+                    <property value="${up.port}" name="port"/>
+                    <property value="true" name="auxiliary;erased;mimeType"/>
+                    <property value="${up.host}" name="host"/>
+                    <property value="http://www.mulesoft.org/schema/mule/http/endpoint" name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute"/>
+                    <property value="false" name="keep-alive"/>
+                    <property value="" name="contentType"/>
+                    <property value="false" name="disableTransportTransformer"/>
+                    <property value="" name="password"/>
                     <property value="request-response" name="exchange-pattern"/>
-                    <property value="updatePatient-Generic-NormalizationQueue" name="path"/>
-                    <property name="address"/>
+                    <property value="" name="ref"/>
+                    <property value="" name="transformer-refs"/>
+                    <property value="" name="httpLabel"/>
+                    <property value="" name="address"/>
+                    <property value="true" name="auxiliary;erased;encoding"/>
+                    <property value="${up.path}" name="path"/>
+                    <property value="" name="encoding"/>
+                    <property value="" name="responseTransformer-refs"/>
+                    <property value="" name="user"/>
                     <property value="10000" name="responseTimeout"/>
-                    <property name="encoding"/>
-                    <property name="disableTransportTransformer"/>
-                    <property value="text/plain" name="mimeType"/>
-                    <property name="connector-ref"/>
-                    <property name="ref"/>
-                    <property name="transformer-refs"/>
-                    <property name="responseTransformer-refs"/>
+                    <property value="" name="mimeType"/>
+                    <property value="" name="connector-ref"/>
+                    <property name="updated"/>
                 </properties>
+                <description></description>
             </endpoint>
-            <pattern type="org.mule.tooling.ui.modules.core.pattern.logger" name="Logger" entity-id="cb2d900d-157d-4cfa-bcef-04b91abb23d6">
+            <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#1">
                 <properties>
                     <property value="Normalizing a generic update patient transaction: #[groovy:return message.toString();] with payload #[groovy:return message.payload.toString();]" name="message"/>
                     <property value="INFO" name="level"/>
                     <property name="category"/>
+                    <property value="3" name="auxiliary;index"/>
+                    <property value="3" name="auxiliary;index"/>
+                    <property value="3" name="auxiliary;index"/>
                 </properties>
             </pattern>
-            <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="On-ramp Transformer" entity-id="e8e997d2-edc0-44fc-bb9f-6bd996303373">
+            <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="On-ramp Transformer" entity-id="Java#1">
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
                     <property name="encoding"/>
+                    <property value="4" name="auxiliary;index"/>
                     <property name="mimeType"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
                     <property value="org.jembi.heal.DoNothingTransformer" name="class"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
+                    <property value="4" name="auxiliary;index"/>
                 </properties>
             </pattern>
-            <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="Translation Transformer" entity-id="fbb933da-f8c6-475b-af35-3671e91b22c9">
+            <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="Translation Transformer" entity-id="Java#2">
                 <properties>
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
                     <property name="encoding"/>
+                    <property value="5" name="auxiliary;index"/>
                     <property name="mimeType"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property value="5" name="auxiliary;index"/>
                     <property value="org.jembi.heal.DoNothingTransformer" name="class"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property value="5" name="auxiliary;index"/>
+                    <property value="5" name="auxiliary;index"/>
                 </properties>
             </pattern>
-            <response entity-id="0e613f8f-4f97-4388-aea7-a2d4d743084b">
-                <compartment entity-id="8912136e-3af5-4582-9479-f44d4dfd42d3">
-                    <lane entity-id="5f4a58ec-b09f-4a25-9c10-7df1bb8dcdc0">
-                        <pattern type="org.mule.tooling.ui.modules.core.pattern.logger" name="Logger" entity-id="9a4b2f8f-0354-429f-bbc6-f6cc4defe3ec">
+            <response index="6" entity-id="response#1">
+                <compartment entity-id="compartment#1">
+                    <lane isChoiceOtherwiseLane="false" index="0" hadOnlyOneElement="false" entity-id="compartment-lane#2">
+                        <pattern type="http://www.mulesoft.org/schema/mule/core/logger" name="Logger" entity-id="Logger#2">
                             <properties>
 <property value="Responce de-normalization" name="message"/>
 <property value="INFO" name="level"/>
 <property name="category"/>
+<property value="7" name="auxiliary;index"/>
+<property value="7" name="auxiliary;index"/>
+<property value="7" name="auxiliary;index"/>
                             </properties>
                         </pattern>
-                        <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="Off-ramp Transformer" entity-id="f9682fbf-9c0d-4f51-84e8-b12e55745f56">
+                        <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="Off-ramp Transformer" entity-id="Java#3">
                             <properties>
 <property name="returnClass"/>
 <property name="ignoreBadInput"/>
 <property name="encoding"/>
+<property value="8" name="auxiliary;index"/>
 <property name="mimeType"/>
+<property value="8" name="auxiliary;index"/>
+<property value="8" name="auxiliary;index"/>
 <property value="org.jembi.heal.DoNothingTransformer" name="class"/>
+<property value="8" name="auxiliary;index"/>
+<property value="8" name="auxiliary;index"/>
+<property value="8" name="auxiliary;index"/>
                             </properties>
                         </pattern>
                     </lane>
                 </compartment>
             </response>
-            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Send to updatePatientOrchestrationQueue" entity-id="8a5a0d64-d653-49ee-be63-07b51f3f162a">
+            <endpoint message-exchange-pattern="OneWay" direction="Outbound" type="http://www.mulesoft.org/schema/mule/vm/endpoint" name="Send to updatePatientOrchestrationQueue" entity-id="VM#2">
                 <properties>
                     <property value="one-way" name="exchange-pattern"/>
                     <property value="request-response" name="exchange-pattern"/>
+                    <property value="9" name="auxiliary;index"/>
                     <property value="updatePatientOrchestrationQueue" name="path"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property value="9" name="auxiliary;index"/>
                     <property name="address"/>
                     <property value="10000" name="responseTimeout"/>
                     <property name="encoding"/>
                     <property name="disableTransportTransformer"/>
                     <property value="text/plain" name="mimeType"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
                     <property name="connector-ref"/>
                     <property name="ref"/>
                     <property name="transformer-refs"/>
                     <property name="responseTransformer-refs"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
+                    <property value="9" name="auxiliary;index"/>
                 </properties>
             </endpoint>
         </lane>
