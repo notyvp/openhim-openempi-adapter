@@ -9,7 +9,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd 
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd 
 http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd ">
-	<context:property-placeholder xmlns:context="http://www.springframework.org/schema/context" location="classpath:HIM-core.properties, classpath:HIM-core-override.properties"></context:property-placeholder>
+	<context:property-placeholder xmlns:context="http://www.springframework.org/schema/context" location="classpath:patientMediator.properties, classpath:patientMediator-override.properties"></context:property-placeholder>
     <flow name="mediation-denormalization-getrawpersonrecord-openempiFlow" doc:name="mediation-denormalization-getrawpersonrecord-openempiFlow">
         <vm:inbound-endpoint exchange-pattern="request-response" path="getRawPersonRecordPatient-De-normailization-OpenEMPI" responseTimeout="10000" mimeType="text/plain" doc:name="Read from queue"/>
         <logger message="De-normalizing a get raw person record transaction to OpenEMPI" level="INFO" doc:name="Logger"/>
