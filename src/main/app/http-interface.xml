@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:context="http://www.springframework.org/schema/context" xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="CE-3.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd 
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd 
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd 
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd ">
+<context:property-placeholder xmlns:context="http://www.springframework.org/schema/context" location="classpath:patientMediator.properties, classpath:patientMediator-override.properties"></context:property-placeholder>
+    <flow name="http-interfaceFlow1" doc:name="http-interfaceFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="0.0.0.0" port="${pm.port}" path="ws/rest/v1/" doc:name="HTTP"/>
+        <custom-transformer class="org.jembi.rhea.transformers.HttpRequestToRestfulHttpRequestTransformer" doc:name="Java"/>
+        <choice doc:name="Choice">
+            <when expression="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('POST')" evaluator="groovy">
+                <processor-chain doc:name="Processor Chain">
+                    <vm:outbound-endpoint exchange-pattern="request-response" path="savePatient-Generic-NormalizationQueue" responseTimeout="10000" mimeType="text/plain" doc:name="Send to savePatient-Generic-NormalizationQueue"/>
+                </processor-chain>
+            </when>
+            <when expression="message.payload.path.contains('ws/rest/v1/patients') &amp;&amp; message.payload.httpMethod.equals('GET')" evaluator="groovy">
+                <processor-chain doc:name="Processor Chain">
+                    <vm:outbound-endpoint exchange-pattern="request-response" path="queryPatients-Generic-NormalizationQueue" responseTimeout="10000" mimeType="text/plain" doc:name="Send to queryPatients-Generic-NormalizationQueue"/>
+                </processor-chain>
+            </when>
+            <when expression="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('GET')" evaluator="groovy">
+                <processor-chain doc:name="Processor Chain">
+                    <vm:outbound-endpoint exchange-pattern="request-response" path="getPatient-Generic-NormalizationQueue" responseTimeout="10000" mimeType="text/plain" doc:name="Send to getPatient-Generic-NormalizationQueue"/>
+                </processor-chain>
+            </when>
+            <when expression="message.payload.path.contains('ws/rest/v1/patient/') &amp;&amp; message.payload.httpMethod.equals('PUT')" evaluator="groovy">
+                <processor-chain doc:name="Processor Chain">
+                    <vm:outbound-endpoint exchange-pattern="request-response" path="updatePatient-Generic-NormalizationQueue" responseTimeout="10000" mimeType="text/plain" doc:name="Send to updatePatient-Generic-NormalizationQueue"/>
+                </processor-chain>
+            </when>
+            <otherwise>
+            <processor-chain>
+                    <logger level="ERROR" doc:name="Logger" message="Recieved a request that does not conform to any patient paths"/>
+                    <scripting:transformer doc:name="Groovy">
+                        <scripting:script engine="Groovy">
+                            <scripting:text><![CDATA[org.jembi.rhea.RestfulHttpResponse res = new org.jembi.rhea.RestfulHttpResponse();
+                            res.setHttpStatus(404);
+                            res.setBody("Patient mediator could not find a resource at this path");
+                            return res;]]></scripting:text>
+                        </scripting:script>
+                    </scripting:transformer>
+            </processor-chain>
+            </otherwise>
+        </choice>
+        <custom-transformer class="org.jembi.rhea.transformers.RestfulHttpResponseToHttpResponseTransformer" doc:name="Java"/>
+    </flow>
+</mule>
