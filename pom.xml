@@ -2,10 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jembi.openhim</groupId>
-	<version>0.1.0-SNAPSHOT</version>
+	<artifactId>openhim-openempi-patient-adapter</artifactId>
+	<version>1.0.0</version>
 	<packaging>mule</packaging>
-	<name>OpenHIM</name>
-	<description>OpenHIM is a open source Health Information Mediator built to facilitate interoperability between disparate Health Information Systems.</description>
+	<name>OpenHIM OpenEMPI Patient Adapter</name>
+	<description></description>
 	<url>http://openhim.org/</url>
 
 	<properties>
@@ -422,5 +423,4 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<artifactId>openempi-patient-adapter</artifactId>
 </project>
