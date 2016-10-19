@@ -36,11 +36,14 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
             <custom-transformer class="org.jembi.rhea.transformers.HttpResponseToRestfulHttpResponseTransformer" doc:name="HttpResponseToRestfulHttpResponseTransformer"/>
             <scripting:transformer doc:name="Groovy">
                 <scripting:script engine="Groovy">
-                    <scripting:text><![CDATA[if (message.payload.httpStatus == 204) {
-	message.payload.body = '';
-	message.payload.httpStatus = 404;
-}
-return message;]]></scripting:text>
+                    <scripting:text>
+                    <![CDATA[
+                    if (message.payload.httpStatus == 204) {
+						message.payload.body = '';
+						message.payload.httpStatus = 404;
+					}
+					return message;]]>
+					</scripting:text>
                 </scripting:script>
             </scripting:transformer>
             <logger message="Responce normalization" level="INFO" doc:name="Logger"/>

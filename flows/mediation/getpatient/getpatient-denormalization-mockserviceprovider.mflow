@@ -43,43 +43,43 @@
                     <lane entity-id="125492c9-2acb-4cd6-838a-a84e4fe30468">
                         <pattern type="org.mule.tooling.ui.modules.core.pattern.logger" name="Logger" entity-id="8778f40c-a786-4842-85fd-39cae23d4d0d">
                             <properties>
-<property value="Recieved responce from mock service provider: #[groovy: message.toString();]]" name="message"/>
-<property value="INFO" name="level"/>
-<property name="category"/>
+								<property value="Recieved responce from mock service provider: #[groovy: message.toString();]]" name="message"/>
+								<property value="INFO" name="level"/>
+								<property name="category"/>
                             </properties>
                         </pattern>
                         <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="HttpResponseToRestfulHttpResponseTransformer" entity-id="15bddccd-24da-4090-8ec0-bc10f5a9bc4d">
                             <properties>
-<property name="returnClass"/>
-<property name="ignoreBadInput"/>
-<property name="encoding"/>
-<property name="mimeType"/>
-<property value="org.jembi.rhea.transformers.HttpResponseToRestfulHttpResponseTransformer" name="class"/>
+								<property name="returnClass"/>
+								<property name="ignoreBadInput"/>
+								<property name="encoding"/>
+								<property name="mimeType"/>
+								<property value="org.jembi.rhea.transformers.HttpResponseToRestfulHttpResponseTransformer" name="class"/>
                             </properties>
                         </pattern>
                         <pattern type="org.mule.tooling.ui.modules.core.pattern.logger" name="Logger" entity-id="654df27d-8803-4620-ba9a-5d3ea3c389e7">
                             <properties>
-<property value="Responce normalization" name="message"/>
-<property value="INFO" name="level"/>
-<property name="category"/>
+								<property value="Responce normalization" name="message"/>
+								<property value="INFO" name="level"/>
+								<property name="category"/>
                             </properties>
                         </pattern>
                         <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="On-ramp Transformer" entity-id="be2b3c3f-7cbb-445e-a840-27e9518bab31">
                             <properties>
-<property name="returnClass"/>
-<property name="ignoreBadInput"/>
-<property name="encoding"/>
-<property name="mimeType"/>
-<property value="org.jembi.heal.DoNothingTransformer" name="class"/>
+								<property name="returnClass"/>
+								<property name="ignoreBadInput"/>
+								<property name="encoding"/>
+								<property name="mimeType"/>
+								<property value="org.jembi.heal.DoNothingTransformer" name="class"/>
                             </properties>
                         </pattern>
                         <pattern type="org.mule.tooling.ui.modules.core.pattern.customTransformer" name="Translation Transformer" entity-id="7d2a34c2-b393-45d4-9c4f-2aec5cece140">
                             <properties>
-<property name="returnClass"/>
-<property name="ignoreBadInput"/>
-<property name="encoding"/>
-<property name="mimeType"/>
-<property value="org.jembi.heal.DoNothingTransformer" name="class"/>
+								<property name="returnClass"/>
+								<property name="ignoreBadInput"/>
+								<property name="encoding"/>
+								<property name="mimeType"/>
+								<property value="org.jembi.heal.DoNothingTransformer" name="class"/>
                             </properties>
                         </pattern>
                     </lane>
