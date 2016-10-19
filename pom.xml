@@ -374,9 +374,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>com.github.tomakehurst</groupId>
-		    <artifactId>wiremock</artifactId>
-		    <version>1.30</version>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>1.30</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -386,6 +386,13 @@
 	</dependencies>
 
 	<repositories>
+
+		<repository>
+			<id>codehaus-mule-repo</id>
+			<name>codehaus-mule-repo</name>
+			<url>https://repository.mulesoft.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+		</repository>
 		<repository>
 			<id>jboss</id>
 			<name>JBoss</name>
